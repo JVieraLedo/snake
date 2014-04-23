@@ -37,10 +37,21 @@ void intro_campo(char campo[V][H]){
 void intro_datos(char campo[V][H], int tam){
 	//crear coordenadas x e y del resto de la serpiente
 
-	for (int i = 0; i < tam; i++){
-		snake[i].x =
-	} 
+	for (int i = 1; i < tam; i++){ //empieza en 1 ya que en 0 no puede
+		//conseguir las coordenadas de la cabeza pero restando 1
+		snake[i].x = snake[i - 1].x - 1; 
+		snake[i].y = snake[i - 1].y;
 
+		snake[i].imagen = 'X';
+	} 
+	snake[0].imagen = 'O';
+
+	//imprimir dentro del tablero
+	for(int = 0; i < tam; i++){
+		campo[snake[i].y][snake[i].x] = snake[i].imagen;
+	}
+
+	campo[fruta.y][fruta.x] = '%';
 }
 
 
@@ -74,7 +85,15 @@ void inicio(int *tam, char campo[V][H]){
 	intro_campo(campo);
 	intro_datos(campo, *tam);
 }
-
+//poner en pantalla el juego
+void pantalla(char campo[V][H]){
+	for (int i = 0; i < V; i++){
+		for (int j = 0; j < H; j++){
+			printf("%c", campo[i][j]);
+		}
+		printf("\n");
+	}
+}
 
 int main(int argc, char const *argv[]){
 	
@@ -85,5 +104,8 @@ int main(int argc, char const *argv[]){
 	char campo[V][H]; //matriz donde estaran todos los elementos
 
 	inicio(&tam, campo);//iniciar todos los elementos	
+	//pantalla(campo);
+	
+
 	return EXIT_SUCCESS;
 }
